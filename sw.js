@@ -1,8 +1,8 @@
 // Pandoro (versão web): guarda o app para abrir mesmo sem internet.
 // Os dados não passam por aqui: ficam no aparelho e vão para o GitHub pela sincronização.
-const VERSION = '2.3.0-8';
+const VERSION = '2.3.0-9';
 const CACHE = 'pandoro-' + VERSION;
-const FILES = ["./","index.html","app.js?v=2.3.0-8","styles.css?v=2.3.0-8","manifest.webmanifest","apple-touch-icon.png","icon-192.png","icon-512.png"];
+const FILES = ["./","index.html","app.js?v=2.3.0-9","styles.css?v=2.3.0-9","manifest.webmanifest","apple-touch-icon.png","icon-192.png","icon-512.png"];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES)).then(() => self.skipWaiting()));
