@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Pandoro</title>
+    <meta name="description" content="Pandoro: estudos para concursos, com foco, ciclo, edital e revisões." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Pandoro" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f6f4" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121614" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+    <link rel="stylesheet" href="styles.css?v=2.3.0-8" />
+    <script>
+      window.__PANDORO_WEB_VERSION__ = '2.3.0-8';
+      // Aplica o tema e as cores antes do primeiro desenho para não piscar.
+      (function () {
+        try {
+          var theme = (window.localStorage && window.localStorage.getItem('pandoro:tema')) || 'system';
+          var dark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+          var cores = JSON.parse(window.localStorage.getItem('pandoro:cores') || 'null');
+          var v = cores && cores[dark ? 'dark' : 'light'];
+          if (v) for (var k in v) document.documentElement.style.setProperty(k, v[k]);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="app.js?v=2.3.0-8"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('sw.js').catch(function () {});
+        });
+      }
+    </script>
+  </body>
+</html>
